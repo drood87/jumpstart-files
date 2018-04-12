@@ -1,12 +1,33 @@
 var userScrollValue = 0;
 
-$(window).scroll(function() {
+$(window).scroll(function(event) {
 	var scrollFromTop = $(this).scrollTop();
 
-	if(scrollFromTop - userScrollValue >= 50) {
+	console.log("scrollFromTop", scrollFromTop)
+
+	if(scrollFromTop - userScrollValue > 58) {
 		var navbarHeight = $(".navbar").css("height");
+
+		// console.log(navbarHeight)
+
+		$(".navbar").animate({
+		 top: "-" + navbarHeight 
+		}, 150);
+		
+		userScrollValue = scrollFromTop; 		
+	} else if (userScrollValue - scrollFromTop > 58) { 
+		$(".navbar").animate({
+			top: "0px"
+		}, 150);
+
+		userScrollValue = scrollFromTop; 
+
+		console.log("scrollFromTopafter", scrollFromTop)
+		console.log("userScrollValue", userScrollValue)
 	}
 })
+
+
 
 $(document).ready(function() {
 	$(".carousel").slick({
